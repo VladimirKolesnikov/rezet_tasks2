@@ -4,18 +4,16 @@ const takeNumbers = (tieredArr) => {
 }
 
 const makeFlat = (arr) => {
-    const result = arr.reduce((accum, item) => {
+    let accum = [];
+    arr.forEach((item) => {
         if (item instanceof Array) {
-            const innerArray = makeFlat(item);
-            accum = [...accum, ...innerArray];
+            accum = [...accum, ...makeFlat(item)];
         } else {
             accum.push(item);
         }
+    });
 
-        return accum;
-    }, []);
-
-    return result;
+    return accum;
 };
 
 export default takeNumbers;
