@@ -1,6 +1,6 @@
 const transformLinks = (str) => {
-  const mdLinkTemplate = /\[.+\]\((http|https|ftp):\/\/[^" ]+?\)/g;
-  return str.replace(mdLinkTemplate, changeLink);
+    const mdLinkTemplate = /\[[^\]]+\]\((http|https|ftp):\/\/([\w-]+\.)+\w{1,10}\/?( "[^"]+")?\)/g;
+    return str.replace(mdLinkTemplate, changeLink);
 };
 
 const changeLink = (link) => {
