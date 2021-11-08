@@ -8,11 +8,14 @@ const changeLink = (link) => {
 }
 
 const parse = (mdLink) => {
+    const textUrlTilleTemplate = /\[(.+)\]\(([^"]+)( "(.+)")?\)/; // match groups: 1-text, 2-url, 4-title
     return ({
-        text: mdLink.match(/\[(.+?)\]/)[1],
-        href: mdLink.match(/\((.+?)\)/)[1],
+        text: mdLink.match(textUrlTilleTemplate)[1],
+        href: mdLink.match(textUrlTilleTemplate)[2],
+        title: mdLink.match(textUrlTilleTemplate)[4],
         renderAsHtml() {
-            return `<a href="${this.href}" >${this.text}</a>`;
+            const titleAttribute = this.title ? ` title="${this.title}"` : '';
+            return `<a href="${this.href}"${titleAttribute} >${this.text}</a>`;
         },
     });
 };
