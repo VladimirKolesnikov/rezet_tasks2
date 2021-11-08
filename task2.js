@@ -1,6 +1,6 @@
 const takeNumbers = (tieredArr) => {
     const flatArr = makeFlat(tieredArr);
-    return flatArr.filter((item) => typeof item === 'number');
+    return flatArr.filter(Number.isInteger);
 }
 
 const makeFlat = (arr) => {
